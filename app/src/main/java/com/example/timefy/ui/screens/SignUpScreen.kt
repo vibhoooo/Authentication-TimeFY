@@ -3,6 +3,7 @@ package com.example.timefy.ui.screens
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,81 +29,83 @@ fun SignUpScreen(SignUpViewModel: SignUpViewModel = viewModel()) {
             .background(Color.White)
             .padding(28.dp)
     ) {
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            Header1(
-                value = stringResource(id = R.string.hello)
-            )
-            Header2(
-                value = stringResource(id = R.string.create)
-            )
-            Spacer(
-                modifier = Modifier
-                    .height(20.dp)
-            )
-            Input(
-                labelValue = stringResource(id = R.string.first),
-                painterResource(id = R.drawable.profile),
-                onTextChangeSelected = {
-                    SignUpViewModel.onEvent(UiEvents.FirstNameChanged(it))
-                },
-                errorStatus = SignUpViewModel.signUpUIState.value.firstNameError
-            )
-            Input(
-                labelValue = stringResource(id = R.string.last),
-                painterResource = painterResource(id = R.drawable.profile),
-                onTextChangeSelected = {
-                    SignUpViewModel.onEvent(UiEvents.LastNameChanged(it))
-                },
-                errorStatus = SignUpViewModel.signUpUIState.value.lastNameError
-            )
-            Input(
-                labelValue = stringResource(id = R.string.email),
-                painterResource = painterResource(id = R.drawable.message),
-                onTextChangeSelected = {
-                    SignUpViewModel.onEvent(UiEvents.EmailChanged(it))
-                },
-                errorStatus = SignUpViewModel.signUpUIState.value.emailError
-            )
-            InputPassword(
-                labelValue = stringResource(id = R.string.password),
-                painterResource = painterResource(id = R.drawable.lock),
-                onTextChangeSelected = {
-                    SignUpViewModel.onEvent(UiEvents.PasswordChanged(it))
-                },
-                errorStatus = SignUpViewModel.signUpUIState.value.passwordError
-            )
-            CheckBox(
-                value = stringResource(id = R.string.terms),
-                onTextSelected = {
-                    Log.d("ClickableText", "{HMM}")
-                    Router.navigateTo(Screen.TACScreen)
-                    Log.d("ClickableText", "{HMM}")
-                }
-            )
-            Spacer(
-                modifier = Modifier
-                    .height(40.dp)
-            )
-            Button(
-                value = stringResource(id = R.string.button),
-                onButtonClicked = {
-                    SignUpViewModel.onEvent(UiEvents.RegisterButtonClicked)
-                }
-            )
-            Spacer(
-                modifier = Modifier
-                    .height(20.dp)
-            )
-            Divider()
-            DividerText(
-                signUp = true,
-                onTextSelected = {
-                    Router.navigateTo(Screen.LogInScreen)
-                }
-            )
+            items(1) {
+                Header1(
+                    value = stringResource(id = R.string.hello)
+                )
+                Header2(
+                    value = stringResource(id = R.string.create)
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(20.dp)
+                )
+                Input(
+                    labelValue = stringResource(id = R.string.first),
+                    painterResource(id = R.drawable.profile),
+                    onTextChangeSelected = {
+                        SignUpViewModel.onEvent(UiEvents.FirstNameChanged(it))
+                    },
+                    errorStatus = SignUpViewModel.signUpUIState.value.firstNameError
+                )
+                Input(
+                    labelValue = stringResource(id = R.string.last),
+                    painterResource = painterResource(id = R.drawable.profile),
+                    onTextChangeSelected = {
+                        SignUpViewModel.onEvent(UiEvents.LastNameChanged(it))
+                    },
+                    errorStatus = SignUpViewModel.signUpUIState.value.lastNameError
+                )
+                Input(
+                    labelValue = stringResource(id = R.string.email),
+                    painterResource = painterResource(id = R.drawable.message),
+                    onTextChangeSelected = {
+                        SignUpViewModel.onEvent(UiEvents.EmailChanged(it))
+                    },
+                    errorStatus = SignUpViewModel.signUpUIState.value.emailError
+                )
+                InputPassword(
+                    labelValue = stringResource(id = R.string.password),
+                    painterResource = painterResource(id = R.drawable.lock),
+                    onTextChangeSelected = {
+                        SignUpViewModel.onEvent(UiEvents.PasswordChanged(it))
+                    },
+                    errorStatus = SignUpViewModel.signUpUIState.value.passwordError
+                )
+                CheckBox(
+                    value = stringResource(id = R.string.terms),
+                    onTextSelected = {
+                        Log.d("ClickableText", "{HMM}")
+                        Router.navigateTo(Screen.TACScreen)
+                        Log.d("ClickableText", "{HMM}")
+                    }
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(40.dp)
+                )
+                Button(
+                    value = stringResource(id = R.string.button),
+                    onButtonClicked = {
+                        SignUpViewModel.onEvent(UiEvents.RegisterButtonClicked)
+                    }
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(20.dp)
+                )
+                Divider()
+                DividerText(
+                    signUp = true,
+                    onTextSelected = {
+                        Router.navigateTo(Screen.LogInScreen)
+                    }
+                )
+            }
         }
     }
 }
